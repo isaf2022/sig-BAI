@@ -76,6 +76,7 @@ funcao inteiro procurarConta (inteiro numero_conta)
 fim funcao
 
 funcao logico cadastro_de_cliente (PESSOA p)
+	p.codigo <- totalClientes + 1
 	clientes[totalClientes] <- p
 	totalClientes <- totalClientes + 1
 	
