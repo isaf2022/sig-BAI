@@ -110,6 +110,11 @@ inicio
 		escolha opcao
 		caso CADASTRO:
 			PESSOA p
+			
+			p.nome <- pedirLiteral("Digite o seu nome completo: ")
+			p.identificacao <- pedirLiteral("Digite o seu documento de identificação: ")
+			p.telefone <- pedirLiteral("Digite o seu número de telefone: ")
+			
 			resposta <- cadastro_de_cliente(p)
 			
 		caso LISTAR:
@@ -117,40 +122,45 @@ inicio
 			tPause(2 * 1000) // 2 segundos
 			
 		caso ABERTURA_CONTA:
-			PESSOA cliente
-			inteiro tipo_conta
-			
-			resposta <- abertura_de_conta(cliente, tipo_conta)
+			inteiro codigo <- pedirInteiro("Digite o seu código pessoal: ")
+			inteiro tipo_conta <- pedirInteiro("Digite 0 (zero) para conta pessoal ou 1 (um) para conta empresarial: ")
+			PESSOA p
+
+			resposta <- abertura_de_conta(p, tipo_conta)
 			
 		caso DEPOSITO:
-			inteiro numero_conta <- 1
-			real valor <- 0
+			inteiro numero_conta <- pedirInteiro("Digite o seu número da conta: ")
+			real valor <- pedirReal("Digite o valor a depositar: ")
 			
 			resposta <- depositar_dinheiro(numero_conta, valor)
 			
 		caso LEVANTAMENTO:
-			inteiro numero_conta <- 1
-			real valor <- 0
-			
+			inteiro numero_conta <- pedirInteiro("Digite o seu número da conta: ")
+			real valor <- pedirReal("Digite o valor a levantar: ")
+
 			resposta <- levantar_dinheiro(numero_conta, valor)
 			
 		caso CONSULTA:
-			inteiro numero_conta <- 1
+			inteiro numero_conta <- pedirInteiro("Digite o seu número da conta: ")
 			real saldo <- consultar_saldo(numero_conta)
 			
-			resposta <- saldo = 0
-			
 		caso TRANSFERENCIA:
-			inteiro num_conta_enviar <- 1
-			inteiro num_conta_receber <- 2
-			real valor <- 0
+			inteiro num_conta_enviar <- pedirInteiro("Digite o seu número de conta: ")
+			inteiro num_conta_receber <- pedirInteiro("Digite o número da conta destinatária: ")
+			real valor <- pedirReal("Digite o valor que deseja transferir: ")
 
 			resposta <- transferir_dinheiro(num_conta_enviar, num_conta_receber, valor)
+			
 		caso ATUALIZACAO:
 			PESSOA p
-			inteiro codigo_cliente <- 1
+			
+			inteiro codigo_cliente <- pedirInteiro("Digite o seu código de cliente: ")
+			p.nome <- pedirLiteral("Digite o seu nome completo: ")
+			p.identificacao <- pedirLiteral("Digite o seu documento de identificação: ")
+			p.telefone <- pedirLiteral("Digite o seu número de telefone: ")
 			
 			resposta <- actualizar_dados(p, codigo_cliente)
+			
 		caso SAIR:
 			limpatela
 		fim escolha
