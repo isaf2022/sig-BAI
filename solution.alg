@@ -75,6 +75,17 @@ funcao inteiro procurarConta (inteiro numero_conta)
 	retorne NAO_ENCONTRADO
 fim funcao
 
+funcao inteiro procurarCliente (inteiro codigo_cliente)
+	inteiro indice
+	para indice de 0 ate totalClientes - 1
+		se clientes[indice].codigo = codigo_cliente entao
+			retorne indice
+		fim se
+	fim para
+
+	retorne NAO_ENCONTRADO
+fim funcao
+
 funcao logico cadastro_de_cliente (PESSOA p)
 	p.codigo <- totalClientes + 1
 	clientes[totalClientes] <- p
@@ -176,6 +187,16 @@ funcao logico transferir_dinheiro (inteiro num_da_conta_enviar, inteiro num_da_c
 fim funcao
 
 funcao logico actualizar_dados (PESSOA p, inteiro codigo_cliente)
+	inteiro indice <- procurarCliente(codigo_cliente)
+
+	se indice = NAO_ENCONTRADO entao
+		mensagem_de_erro("Código cliente incorrecto")
+		retorne falso
+	fim se
+
+	p.codigo <- codigo_cliente
+	clientes[indice] <- p
+	
 	retorne verdadeiro
 fim funcao
 
