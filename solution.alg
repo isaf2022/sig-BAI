@@ -39,6 +39,23 @@ procedimento mensagem_de_sucesso ()
 	escreva "|========================================|\n"
 fim procedimento
 
+funcao literal pedirLiteral (literal mensagem)
+	literal resposta
+
+	escreva mensagem
+	leia resposta
+
+	retorne resposta
+fim funcao
+
+funcao real pedirReal (literal mensagem)
+	retorne strValorReal(pedirLiteral(mensagem))
+fim funcao
+
+funcao inteiro pedirInteiro (literal mensagem)
+	retorne strValorInt(pedirLiteral(mensagem))
+fim funcao
+
 funcao logico cadastro_de_cliente (PESSOA p)
 	retorne verdadeiro
 fim funcao
