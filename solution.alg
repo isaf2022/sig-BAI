@@ -130,7 +130,14 @@ funcao logico levantar_dinheiro (inteiro num_da_conta, real valor)
 fim funcao
 
 funcao real consultar_saldo (inteiro num_da_conta)
-	retorne 0
+	inteiro indice <- procurarConta(num_da_conta)
+
+	se indice = NAO_ENCONTRADO entao
+		mensagem_de_erro("Número de conta incorrecto")
+		retorne NAO_ENCONTRADO
+	fim se
+	
+	retorne contas[indice].saldo
 fim funcao
 
 funcao logico transferir_dinheiro (inteiro num_da_conta_enviar, inteiro num_da_conta_receber, real valor)
