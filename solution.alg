@@ -57,6 +57,9 @@ funcao inteiro pedirInteiro (literal mensagem)
 fim funcao
 
 funcao logico cadastro_de_cliente (PESSOA p)
+	clientes[totalClientes] <- p
+	totalClientes <- totalClientes + 1
+	
 	retorne verdadeiro
 fim funcao
 
