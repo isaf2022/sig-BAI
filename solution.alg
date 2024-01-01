@@ -13,7 +13,7 @@ registo CONTA
 	inteiro	estado
 fim registo
 
-constante literal caminho_ficheiro_backup <- "path/to/backup/file" // replace with the real path
+constante literal caminho_ficheiro_backup <- "path/to/backup/file" // troque pelo verdadeiro caminho do arquivo
 
 funcao inteiro contarLinhas ()
 	fficheiro ficheiro
@@ -272,6 +272,15 @@ funcao logico actualizar_dados (PESSOA p, inteiro codigo_cliente)
 	retorne verdadeiro
 fim funcao
 
+procedimento criar_arquivo_backup ()
+	se nao fExiste(caminho_ficheiro_backup) entao
+		se nao fCriar(caminho_ficheiro_backup) entao
+			mensagem_de_erro("Impossível continuar programa")
+			fim algoritmo
+		fim se
+	fim se
+fim procedimento
+
 inicio
 	
 	constante inteiro CADASTRO 			<- 1
@@ -283,6 +292,8 @@ inicio
 	constante inteiro TRANSFERENCIA 	<- 7
 	constante inteiro ATUALIZACAO 		<- 8
 	constante inteiro SAIR 				<- 9
+
+	criar_arquivo_backup()
 	
 	inteiro opcao
 	enquanto opcao <> SAIR faca
