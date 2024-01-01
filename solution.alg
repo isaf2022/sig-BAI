@@ -71,15 +71,15 @@ procedimento mostrarDadosCliente (PESSOA cliente, CONTA conta_cliente)
 
 	escreva "==========================================\n"
 	escreva "        DADOS PESSOAIS DO CLIENTE         \n"
-	escreva " CODIGO : ", 			cliente.codigo, "\n"
-	escreva " NOME : ", 			cliente.nome, "\n"
-	escreva " IDENTIFICAÇÃO: ", 	cliente.identificacao, "\n"
-	escreva " TELEFONE: ", 			cliente.telefone, "\n"
+	escreva " CODIGO : ",           cliente.codigo, "\n"
+	escreva " NOME : ",             cliente.nome, "\n"
+	escreva " IDENTIFICAÇÃO: ",     cliente.identificacao, "\n"
+	escreva " TELEFONE: ",          cliente.telefone, "\n"
 	escreva "        DADOS DA CONTA DO CLIENTE         \n"
-	escreva " NUMERO DA CONTA: ", 	conta_cliente.numero_conta, "\n"
-	escreva " TIPO DE CONTA: ", 	tipos_conta[conta_cliente.tipo_conta], "\n"
-	escreva " SALDO: ", 			conta_cliente.saldo, "\n"
-	escreva " ESTADO DA CONTA: ", 	estados[conta_cliente.estado], "\n"
+	escreva " NUMERO DA CONTA: ",   conta_cliente.numero_conta, "\n"
+	escreva " TIPO DE CONTA: ",     tipos_conta[conta_cliente.tipo_conta], "\n"
+	escreva " SALDO: ",             conta_cliente.saldo, "\n"
+	escreva " ESTADO DA CONTA: ",   estados[conta_cliente.estado], "\n"
 	escreva "==========================================\n"
 fim procedimento
 
@@ -348,15 +348,15 @@ fim procedimento
 
 inicio
 	
-	constante inteiro CADASTRO 			<- 1
-	constante inteiro LISTAR 			<- 2
-	constante inteiro ABERTURA_CONTA 	<- 3
-	constante inteiro DEPOSITO 			<- 4
-	constante inteiro LEVANTAMENTO 		<- 5
-	constante inteiro CONSULTA 			<- 6
-	constante inteiro TRANSFERENCIA 	<- 7
-	constante inteiro ATUALIZACAO 		<- 8
-	constante inteiro SAIR 				<- 9
+	constante inteiro CADASTRO          <- 1
+	constante inteiro LISTAR            <- 2
+	constante inteiro ABERTURA_CONTA    <- 3
+	constante inteiro DEPOSITO          <- 4
+	constante inteiro LEVANTAMENTO      <- 5
+	constante inteiro CONSULTA          <- 6
+	constante inteiro TRANSFERENCIA     <- 7
+	constante inteiro ATUALIZACAO       <- 8
+	constante inteiro SAIR              <- 9
 
 	criar_arquivo_backup()
 	restaurar_copia_de_seguranca()
