@@ -281,6 +281,30 @@ procedimento criar_arquivo_backup ()
 	fim se
 fim procedimento
 
+procedimento copia_de_seguranca ()
+	fficheiro ficheiro
+	literal cabecalho <- "codigo\tnome\tidentificacao\ttelefone\tnumero_conta\ttipo_conta\tsaldo\tcodigo_cliente\testado\n"
+
+	fAbrir(ficheiro, caminho_ficheiro_backup, verdadeiro)
+	fEscrever(ficheiro, cabecalho)
+
+	inteiro contador
+	para contador de 0 ate totalClientes - 1
+		PESSOA p <- clientes[contador]
+		literal linha <- strIntParaStr(p.codigo) + "\t" + p.nome + "\t" + p.identificacao + "\t" + p.telefone
+		
+		inteiro indice <- procurarContaPorCliente(p.codigo)
+		se indice <> NAO_ENCONTRADO entao
+			CONTA c <- contas[indice]
+			linha <- linha + "\t" + strIntParaStr(c.numero_conta) + "\t" + strIntParaStr(c.tipo_conta) + "\t" + strRealParaStr(c.saldo) + "\t" + strIntParaStr(c.codigo_cliente) + "\t" + strIntParaStr(c.estado)
+		fim se
+
+		fEscrever(ficheiro, linha + "\n")
+	fim para
+
+	fFechar(ficheiro)
+fim procedimento
+
 inicio
 	
 	constante inteiro CADASTRO 			<- 1
@@ -368,6 +392,7 @@ inicio
 		fim escolha
 
 		se resposta entao
+			copia_de_seguranca()
 			mensagem_de_sucesso()
 		fim se
 
