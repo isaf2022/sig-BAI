@@ -13,11 +13,29 @@ registo CONTA
 	inteiro	estado
 fim registo
 
-constante inteiro NAO_ENCONTRADO <- -1
+constante literal caminho_ficheiro_backup <- "path/to/backup/file" // replace with the real path
 
-PESSOA clientes[1000]
-CONTA contas[1000]
+funcao inteiro contarLinhas ()
+	fficheiro ficheiro
+	inteiro totalLinhas
+
+	fAbrir(ficheiro, caminho_ficheiro_backup, falso)
+
+	enquanto fTemLinha(ficheiro) faca
+		fLerLinha(ficheiro)
+		totalLinhas <- totalLinhas + 1
+	fim enquanto
+
+	fFechar(ficheiro)
+
+	retorne totalLinhas
+fim funcao
+
+inteiro totalLinhas <- contarLinhas()
 inteiro totalClientes, totalContas
+
+PESSOA clientes[totalLinhas + 1000]
+CONTA contas[totalLinhas + 1000]
 
 procedimento mostrarMenu ()
 	limpatela
@@ -87,6 +105,8 @@ fim funcao
 funcao inteiro pedirInteiro (literal mensagem)
 	retorne strValorInt(pedirLiteral(mensagem))
 fim funcao
+
+constante inteiro NAO_ENCONTRADO <- -1
 
 funcao inteiro procurarConta (inteiro numero_conta)
 	inteiro indice
