@@ -47,6 +47,24 @@ procedimento mensagem_de_erro (literal erro)
 	escreva "==========================================\n"
 fim procedimento
 
+procedimento mostrarDadosCliente (PESSOA cliente, CONTA conta_cliente)
+	literal estados[] <- {"BLOQUEADO", "ACTIVO"}
+	literal tipos_conta[] <- {"PESSOAL", "EMPRESARIAL"}
+
+	escreva "==========================================\n"
+	escreva "        DADOS PESSOAIS DO CLIENTE         \n"
+	escreva " CODIGO : ", 			cliente.codigo, "\n"
+	escreva " NOME : ", 			cliente.nome, "\n"
+	escreva " IDENTIFICAÇÃO: ", 	cliente.identificacao, "\n"
+	escreva " TELEFONE: ", 			cliente.telefone, "\n"
+	escreva "        DADOS DA CONTA DO CLIENTE         \n"
+	escreva " NUMERO DA CONTA: ", 	conta_cliente.numero_conta, "\n"
+	escreva " TIPO DE CONTA: ", 	tipos_conta[conta_cliente.tipo_conta], "\n"
+	escreva " SALDO: ", 			conta_cliente.saldo, "\n"
+	escreva " ESTADO DA CONTA: ", 	estados[conta_cliente.estado], "\n"
+	escreva "==========================================\n"
+fim procedimento
+
 funcao literal pedirLiteral (literal mensagem)
 	literal resposta
 
@@ -86,6 +104,17 @@ funcao inteiro procurarCliente (inteiro codigo_cliente)
 	retorne NAO_ENCONTRADO
 fim funcao
 
+funcao inteiro procurarContaPorCliente (inteiro codigo_cliente)
+	inteiro indice
+	para indice de 0 ate totalContas - 1
+		se contas[indice].codigo_cliente = codigo_cliente entao
+			retorne indice
+		fim se
+	fim para
+
+	retorne NAO_ENCONTRADO
+fim funcao
+
 funcao logico cadastro_de_cliente (PESSOA p)
 	p.codigo <- totalClientes + 1
 	clientes[totalClientes] <- p
@@ -93,6 +122,23 @@ funcao logico cadastro_de_cliente (PESSOA p)
 	
 	retorne verdadeiro
 fim funcao
+
+procedimento listar_clientes ()
+	se totalClientes = 0 ou totalContas = 0 entao
+		mensagem_de_erro("Nada para mostrar ainda")
+	fim se
+	
+	inteiro i
+	para i de 0 ate totalClientes - 1
+		inteiro indice <- procurarContaPorCliente(clientes[i].codigo)
+
+		se indice = NAO_ENCONTRADO entao
+			continue
+		fim se
+
+		mostrarDadosCliente(clientes[i], contas[indice])
+	fim para
+fim procedimento
 
 funcao logico abertura_de_conta (PESSOA p, inteiro tipo_de_conta)
 	CONTA c
@@ -199,9 +245,6 @@ funcao logico actualizar_dados (PESSOA p, inteiro codigo_cliente)
 	
 	retorne verdadeiro
 fim funcao
-
-procedimento listar_clientes ()
-fim procedimento
 
 inicio
 	
