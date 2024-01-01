@@ -28,7 +28,7 @@ funcao inteiro contarLinhas ()
 
 	fFechar(ficheiro)
 
-	retorne totalLinhas
+	retorne totalLinhas - 1 // ignora cabeçalho
 fim funcao
 
 inteiro totalLinhas <- contarLinhas()
@@ -305,6 +305,47 @@ procedimento copia_de_seguranca ()
 	fFechar(ficheiro)
 fim procedimento
 
+funcao literal limparVirgulas (literal texto_com_virgula)
+	retorne strTrocar(texto_com_virgula, ",", "")
+fim funcao
+
+procedimento restaurar_copia_de_seguranca ()
+	fficheiro ficheiro
+
+	fAbrir(ficheiro, caminho_ficheiro_backup, falso)
+
+	fLerLinha(ficheiro) // ignora cabeçalho
+	enquanto fTemLinha(ficheiro) faca
+		literal linha[] <- strRepartir(fLerLinha(ficheiro), "\t")
+
+		PESSOA p
+		p.codigo <- strValorInt(linha[0])
+		p.nome <- linha[1]
+		p.identificacao <- linha[2]
+		p.telefone <- linha[3]
+
+		clientes[totalClientes] <- p
+		totalClientes <- totalClientes + 1
+
+		logico possui_conta <- aTamanho(linha, 0) > 4
+		se nao possui_conta entao
+			continue
+		fim se
+
+		CONTA c
+		c.numero_conta <- strValorInt(linha[4])
+		c.tipo_conta <- strValorInt(linha[5])
+		c.saldo <- strValorReal(limparVirgulas(linha[6]))
+		c.codigo_cliente <- p.codigo
+		c.estado <- strValorInt(linha[8])
+
+		contas[totalContas] <- c
+		totalContas <- totalContas + 1
+	fim enquanto
+
+	fFechar(ficheiro)
+fim procedimento
+
 inicio
 	
 	constante inteiro CADASTRO 			<- 1
@@ -318,6 +359,7 @@ inicio
 	constante inteiro SAIR 				<- 9
 
 	criar_arquivo_backup()
+	restaurar_copia_de_seguranca()
 	
 	inteiro opcao
 	enquanto opcao <> SAIR faca
