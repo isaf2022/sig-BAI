@@ -142,6 +142,36 @@ funcao real consultar_saldo (inteiro num_da_conta)
 fim funcao
 
 funcao logico transferir_dinheiro (inteiro num_da_conta_enviar, inteiro num_da_conta_receber, real valor)
+	inteiro indice_conta_enviar <- procurarConta(num_da_conta_enviar)
+
+	se indice_conta_enviar = NAO_ENCONTRADO entao
+		mensagem_de_erro("Número de conta a enviar incorrecto")
+		retorne falso
+	fim se
+	
+	inteiro indice_conta_receber <- procurarConta(num_da_conta_receber)
+
+	se indice_conta_receber = NAO_ENCONTRADO entao
+		mensagem_de_erro("Número de conta a receber incorrecto")
+		retorne falso
+	fim se
+
+	se indice_conta_enviar = indice_conta_receber entao
+		mensagem_de_erro("Não pode transferir para a mesma conta")
+		retorne falso
+	fim se
+
+	CONTA conta_enviar <- contas[indice_conta_enviar]
+	CONTA conta_receber <- contas[indice_conta_receber]
+
+	se conta_enviar.saldo < valor entao
+		mensagem_de_erro("O saldo da conta é insuficiente")
+		retorne falso
+	fim se
+
+	conta_enviar.saldo <- conta_enviar.saldo - valor
+	conta_receber.saldo <- conta_receber.saldo + valor
+	
 	retorne verdadeiro
 fim funcao
 
