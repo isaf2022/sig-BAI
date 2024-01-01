@@ -13,6 +13,8 @@ registo CONTA
 	inteiro	estado
 fim registo
 
+constante inteiro NAO_ENCONTRADO <- -1
+
 PESSOA clientes[1000]
 CONTA contas[1000]
 inteiro totalClientes, totalContas
@@ -39,6 +41,12 @@ procedimento mensagem_de_sucesso ()
 	escreva "|========================================|\n"
 fim procedimento
 
+procedimento mensagem_de_erro (literal erro)
+	escreva "==========================================\n"
+	escreva " ERRO! ", erro, "\n"
+	escreva "==========================================\n"
+fim procedimento
+
 funcao literal pedirLiteral (literal mensagem)
 	literal resposta
 
@@ -54,6 +62,17 @@ fim funcao
 
 funcao inteiro pedirInteiro (literal mensagem)
 	retorne strValorInt(pedirLiteral(mensagem))
+fim funcao
+
+funcao inteiro procurarConta (inteiro numero_conta)
+	inteiro indice
+	para indice de 0 ate totalContas - 1
+		se contas[indice].numero_conta = numero_conta entao
+			retorne indice
+		fim se
+	fim para
+	
+	retorne NAO_ENCONTRADO
 fim funcao
 
 funcao logico cadastro_de_cliente (PESSOA p)
@@ -78,6 +97,15 @@ funcao logico abertura_de_conta (PESSOA p, inteiro tipo_de_conta)
 fim funcao
 
 funcao logico depositar_dinheiro (inteiro num_da_conta, real valor)
+	inteiro indice <- procurarConta(num_da_conta)
+
+	se indice = NAO_ENCONTRADO entao
+		mensagem_de_erro("Número de conta incorrecto")
+		retorne falso
+	fim se
+	
+	contas[indice].saldo <- contas[indice].saldo + valor
+	
 	retorne verdadeiro
 fim funcao
 
