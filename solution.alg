@@ -64,6 +64,16 @@ funcao logico cadastro_de_cliente (PESSOA p)
 fim funcao
 
 funcao logico abertura_de_conta (PESSOA p, inteiro tipo_de_conta)
+	CONTA c
+	c.numero_conta <- totalContas + 1
+	c.tipo_conta <- tipo_de_conta
+	c.saldo <- 0
+	c.codigo_cliente <- p.codigo
+	c.estado <- 1
+
+	contas[totalContas] <- c
+	totalContas <- totalContas + 1
+	
 	retorne verdadeiro
 fim funcao
 
