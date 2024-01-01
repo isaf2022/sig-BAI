@@ -282,10 +282,12 @@ inicio
 			
 		caso ABERTURA_CONTA:
 			inteiro codigo <- pedirInteiro("Digite o seu código pessoal: ")
-			inteiro tipo_conta <- pedirInteiro("Digite 0 (zero) para conta pessoal ou 1 (um) para conta empresarial: ")
-			PESSOA p
+			inteiro indice <- procurarCliente(codigo)
 
-			resposta <- abertura_de_conta(p, tipo_conta)
+			se indice <> NAO_ENCONTRADO entao
+				inteiro tipo_conta <- pedirInteiro("Digite 0 (zero) para conta pessoal ou 1 (um) para conta empresarial: ")
+				resposta <- abertura_de_conta(clientes[indice], tipo_conta)
+			fim se
 			
 		caso DEPOSITO:
 			inteiro numero_conta <- pedirInteiro("Digite o seu número da conta: ")
