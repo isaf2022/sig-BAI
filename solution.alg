@@ -65,6 +65,12 @@ procedimento mostrarDadosCliente (PESSOA cliente, CONTA conta_cliente)
 	escreva "==========================================\n"
 fim procedimento
 
+procedimento mostrarSaldo (real saldo)
+	escreva "==========================================\n"
+	escreva " SALDO ATUAL DA CONTA: ", saldo, "\n"
+	escreva "==========================================\n"
+fim procedimento
+
 funcao literal pedirLiteral (literal mensagem)
 	literal resposta
 
@@ -304,6 +310,10 @@ inicio
 		caso CONSULTA:
 			inteiro numero_conta <- pedirInteiro("Digite o seu número da conta: ")
 			real saldo <- consultar_saldo(numero_conta)
+
+			se saldo <> NAO_ENCONTRADO entao
+				mostrarSaldo(saldo)
+			fim se
 			
 		caso TRANSFERENCIA:
 			inteiro num_conta_enviar <- pedirInteiro("Digite o seu número de conta: ")
