@@ -110,6 +110,22 @@ funcao logico depositar_dinheiro (inteiro num_da_conta, real valor)
 fim funcao
 
 funcao logico levantar_dinheiro (inteiro num_da_conta, real valor)
+	inteiro indice <- procurarConta(num_da_conta)
+
+	se indice = NAO_ENCONTRADO entao
+		mensagem_de_erro("Número de conta incorrecto")
+		retorne falso
+	fim se
+
+	CONTA c <- contas[indice]
+
+	se c.saldo < valor entao
+		mensagem_de_erro("O saldo da conta é insuficiente")
+		retorne falso
+	fim se
+	
+	c.saldo <- c.saldo - valor
+
 	retorne verdadeiro
 fim funcao
 
