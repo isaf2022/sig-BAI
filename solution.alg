@@ -13,7 +13,7 @@ registo CONTA
 	inteiro	estado
 fim registo
 
-constante literal caminho_ficheiro_backup <- "path/to/backup/file" // troque pelo verdadeiro caminho do arquivo
+constante literal caminho_ficheiro_backup <- ".\\backup\\backup_isaf.tsv"
 
 funcao inteiro contarLinhas ()
 	fficheiro ficheiro
