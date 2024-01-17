@@ -33,14 +33,7 @@ A motivação para este repositório é um projeto escolar onde o objetivo é si
 
 ## Como testar
 
-Você deverá ter o SPA Pro instalado ou algum outro programa que reconheça essa sintaxe do portugol.
-Antes de executar o programa você deve alterar o caminho de acesso ao arquivo de backup do programa.
-
-```
-   constante literal caminho_ficheiro_backup <- "path/to/backup/file" // substitua esta string pelo caminho absoluto para o arquivo **backup_isaf.txt** dentro deste repositório para funcionar
-```
-
-Vá para a linha 16 e substitua o valor da variável caminho_ficheiro_backup pelo caminho absoluto para o arquivo **./backup/backup_isaf.txt** dentro deste repo.
+Você deverá ter o SPA Pro instalado ou algum outro programa que reconheça essa sintaxe do portugol. Para executar o programa, entre na pasta, clique no arquivo **solução.alg** e opte por executá-lo com SPA Pro (ou equivalente).
 
 ### Contribuir
 

@@ -33,14 +33,7 @@ The motivation for this repository is a school project where the goal is to simu
 
 ## How to test
 
-You should have SPA Pro installed or some other program that recognizes that portugol syntax.
-Before running the program you should alter the path to acccess the program's backup file.
-
-```
-  constante literal caminho_ficheiro_backup <- "path/to/backup/file" // replace this string with the absolute path to the **backup_isaf.txt** file inside of this repository in order to work
-```
-
-Go to line 16 and replace the value of caminho_ficheiro_backup variable with the absolute path to the file **./backup/backup_isaf.txt** inside of this repo.
+You should have SPA Pro installed or some other program that recognizes that portugol syntax. To run the program, enter the folder, click in the **solution.alg** file and choose to run it with SPA Pro (or equivalent).
 
 ### Contrib
 
